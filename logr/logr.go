@@ -39,13 +39,15 @@ func New(config ...Config) fiber.Handler {
 		}
 
 		mutex.Lock()
-		cfg.Logger.Info("",
-			"latency", time.Now().Sub(start).Round(time.Microsecond),
-			"responseCode", c.Response().StatusCode(),
-			"ip", c.IP(),
-			"method", c.Method(),
-			"path", c.Path(),
-		)
+		if !cfg.DisableSuccessMessage {
+			cfg.Logger.Info("",
+				"latency", time.Now().Sub(start).Round(time.Microsecond),
+				"responseCode", c.Response().StatusCode(),
+				"ip", c.IP(),
+				"method", c.Method(),
+				"path", c.Path(),
+			)
+		}
 		mutex.Unlock()
 		return nil
 	}
