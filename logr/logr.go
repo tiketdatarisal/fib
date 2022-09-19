@@ -39,7 +39,7 @@ func New(config ...Config) fiber.Handler {
 		}
 
 		mutex.Lock()
-		if !cfg.DisableSuccessMessage {
+		if cfg.DisplaySuccessMessage {
 			cfg.Logger.Info("",
 				"latency", time.Now().Sub(start).Round(time.Microsecond),
 				"responseCode", c.Response().StatusCode(),
