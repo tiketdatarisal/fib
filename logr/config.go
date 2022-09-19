@@ -11,6 +11,9 @@ type Config struct {
 	// Optional. Default: nil
 	Next func(c *fiber.Ctx) bool
 
+	// DisableSuccessMessage defines an option to disable log when success.
+	DisableSuccessMessage bool
+
 	// Logger defines an instance of log framework that implement logr.Logger interface.
 	//
 	// Required. This will panic if not initiated.
